@@ -3,13 +3,19 @@ import { useRoute } from "vue-router";
 import OptionsSection from "../components/optionsSection.vue";
 import HeaderSection from "../components/HeaderSection.vue";
 import q from "../data/quize.json";
+import { ref } from "vue";
 
 const route = useRoute();
-
 const id = route.params.id;
 const data = q.find((quiz) => quiz.id == id);
+const currentQuestionIndex = ref(0);
 
-console.log("datassa", data);
+const onOptionSelected = (isCorrect) => {
+  console.log("swujnhsdwidwoidwndiw", data.questions.length);
+  if(currentQuestionIndex<=data.questions.length){
+    currentQuestionIndex += 1
+  }
+};
 </script>
 
 <template>
@@ -20,9 +26,8 @@ console.log("datassa", data);
 
     <div>
       <OptionsSection
-        v-for="question in data.questions"
-        :key="question.id"
-        :question="question"
+        :question="data.questions[currentQuestionIndex.valueOf()]"
+        @selectOption="onOptionSelected"
       />
     </div>
   </div>
