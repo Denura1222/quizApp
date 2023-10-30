@@ -7,6 +7,7 @@ const router = useRouter();
 const navigate = () => {
   router.push(`/quiz/${quiz.id}`);
 };
+
 </script>
 
 <template>
